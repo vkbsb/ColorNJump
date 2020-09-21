@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=9 format=2]
+
+[ext_resource path="res://ui/font/Kenney Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_bottom = 10.0
+bg_color = Color( 0.952941, 0.443137, 0.129412, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_bottom = 10.0
+bg_color = Color( 1, 0.741176, 0.411765, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.905882, 0.286275, 0.192157, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+extra_spacing_top = 10
+extra_spacing_bottom = -2
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 7 )
+Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
+Panel/styles/panel = SubResource( 4 )
+ProgressBar/styles/bg = SubResource( 5 )
+ProgressBar/styles/fg = SubResource( 6 )

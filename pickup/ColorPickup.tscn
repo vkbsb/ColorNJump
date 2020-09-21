@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://pickup/Pickup.gd" type="Script" id=1]
+[ext_resource path="res://tiles/block.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.78541, 4.67435 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "pulse"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 6.9644, 1 ),
+"update": 0,
+"values": [ Vector2( 0.25, 0.25 ), Vector2( 0.35, 0.35 ), Vector2( 0.25, 0.25 ) ]
+}
+
+[node name="Pickup" type="Area2D"]
+position = Vector2( 256.988, -7.9009 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.780392, 0, 0.223529, 1 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/pulse = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Pickup_body_entered"]

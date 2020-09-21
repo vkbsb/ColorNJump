@@ -1,0 +1,236 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tiles/tileset_test.tres" type="TileSet" id=2]
+[ext_resource path="res://gameplay/gameplay.gd" type="Script" id=3]
+[ext_resource path="res://tiles/empty_block.png" type="Texture" id=4]
+[ext_resource path="res://tiles/block.png" type="Texture" id=5]
+[ext_resource path="res://pickup/plus_one.png" type="Texture" id=6]
+[ext_resource path="res://ui/Menu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=8]
+[ext_resource path="res://tiles/star1.png" type="Texture" id=9]
+[ext_resource path="res://audio/land_0.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/land_1.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/WinSound.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/FireIgnite.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/pop1.ogg" type="AudioStream" id=14]
+[ext_resource path="res://audio/pop2.ogg" type="AudioStream" id=15]
+[ext_resource path="res://audio/pop3.ogg" type="AudioStream" id=16]
+[ext_resource path="res://audio/game_music.ogg" type="AudioStream" id=17]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="LineShape2D" id=2]
+
+[sub_resource type="Curve" id=3]
+max_value = 5.0
+_data = [ Vector2( 0.00979113, 0.15343 ), 0.0, 2.15082, 0, 0, Vector2( 0.999347, 1.48917 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 1, 1, 0.588235, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 3.35883, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CanvasItemMaterial" id=7]
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.74552 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.356354
+margin_right = 0.356354
+margin_bottom = 3.05176e-05
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+kill_area_offset = 200
+ColorPalettes = [ PoolColorArray( 0.0666667, 0.113725, 0.368627, 1, 0.780392, 0, 0.223529, 1, 0.952941, 0.443137, 0.129412, 1, 1, 0.741176, 0.411765, 1 ), PoolColorArray( 0.12549, 0.415686, 0.364706, 1, 0.505882, 0.698039, 0.0784314, 1, 0.74902, 0.862745, 0.682353, 1, 1, 0.788235, 0.235294, 1 ), PoolColorArray( 0.027451, 0.47451, 0.894118, 1, 0.298039, 0.733333, 0.72549, 1, 0.466667, 0.847059, 0.847059, 1, 0.937255, 0.952941, 0.776471, 1 ) ]
+
+[node name="LandmarkFlag" type="Node2D" parent="."]
+position = Vector2( 6.06781, 761.444 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="LandmarkFlag"]
+self_modulate = Color( 0.780392, 0, 0.223529, 1 )
+margin_top = 8.0
+margin_right = 100.0
+margin_bottom = 16.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="LandmarkFlag"]
+self_modulate = Color( 0.952941, 0.443137, 0.129412, 1 )
+margin_top = 16.0
+margin_right = 100.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="LandmarkFlag"]
+self_modulate = Color( 1, 0.741176, 0.411765, 1 )
+margin_top = 24.0
+margin_right = 100.0
+margin_bottom = 32.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LandmarkFlag"]
+margin_top = 8.0
+margin_right = 40.0
+margin_bottom = 52.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 8 )
+text = "5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="LandmarkFlag"]
+position = Vector2( 1.79797, 20.6766 )
+amount = 10
+explosiveness = 1.0
+texture = ExtResource( 9 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.8
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+radial_accel = 50.0
+radial_accel_random = 0.21
+angle = 360.0
+angle_random = 0.5
+scale_amount = 0.13
+color_ramp = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 81.2097, -25.3234 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 64
+format = 1
+
+[node name="KillArea" type="Area2D" parent="."]
+position = Vector2( 40, 90 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+shape = SubResource( 2 )
+
+[node name="Line2D" type="Line2D" parent="KillArea"]
+visible = false
+points = PoolVector2Array( -100, 0, 100, 0 )
+width = 2.0
+
+[node name="LandFX" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.5
+randomness = 0.16
+texture = ExtResource( 4 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+angular_velocity = 360.0
+angular_velocity_random = 0.5
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 3 )
+color_ramp = SubResource( 4 )
+
+[node name="DeathFX" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( 69.8456, -107.943 )
+emitting = false
+amount = 4
+lifetime = 2.0
+speed_scale = 4.0
+explosiveness = 1.0
+texture = ExtResource( 5 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 30.0
+initial_velocity_random = 1.0
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+scale_amount = 0.25
+scale_amount_random = 0.25
+color_ramp = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PickupFX" type="CPUParticles2D" parent="."]
+modulate = Color( 0.780392, 0, 0.223529, 1 )
+emitting = false
+amount = 1
+texture = ExtResource( 6 )
+gravity = Vector2( 0, -100 )
+scale_amount = 0.5
+scale_amount_curve = SubResource( 6 )
+
+[node name="PickupFX2" type="CPUParticles2D" parent="."]
+modulate = Color( 0.780392, 0, 0.223529, 1 )
+material = SubResource( 7 )
+emitting = false
+explosiveness = 1.0
+texture = ExtResource( 5 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 60.0
+initial_velocity_random = 0.5
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_amount = 0.25
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 8 )
+
+[node name="Menu" parent="." instance=ExtResource( 7 )]
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="PlayerLand_0_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="PlayerLand_1_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="LandMark_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Dead_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Pop_0_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Pop_1_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+
+[node name="Pop_2_SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+pitch_scale = 0.75
+autoplay = true
+[connection signal="area_entered" from="KillArea" to="." method="_on_KillArea_area_entered"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_KillArea_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
