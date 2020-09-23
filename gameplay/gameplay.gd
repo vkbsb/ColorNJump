@@ -20,7 +20,7 @@ var LIFT = preload("res://pickup/SlidingBlock.tscn")
 
 var game_score = 0
 var random = RandomNumberGenerator.new()
-var difficulty_curve = "seemeeseememmhmmem"
+var difficulty_curve = "seeeseememmhmmem"
 var flag_y = 0
 
 func add_block(block_indx, x_offset, y_offset):

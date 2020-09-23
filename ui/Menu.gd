@@ -39,7 +39,11 @@ func save_data(data, file, path = "user"):
 	# Close file.
 	save_file.close()
 
+func _input(event):
+	if Input.is_action_just_pressed("ui_select"):
+		_on_Button_pressed()
 
+		
 func load_data(file, empty = null, path = "user"):
 
 	# Create your file
