@@ -37,6 +37,9 @@ func _physics_process(delta):
 	if is_on_wall():
 		velocity.x *= -1
 		$TrailFX.scale.x *= -1
+		var offset_val = 50 * $Camera2D.position.x/abs($Camera2D.position.x)
+#		$Tween.interpolate_property($Camera2D, "position:x", offset_val, -offset_val, 1)
+#		$Tween.start()
 #		if not $"../PlayerLand_0_SFX".is_playing() and not $"../PlayerLand_1_SFX".is_playing():
 #			if randf() < 0.45:
 #				$"../PlayerLand_0_SFX".play()

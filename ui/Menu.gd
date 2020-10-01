@@ -41,7 +41,12 @@ func save_data(data, file, path = "user"):
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_select"):
-		_on_Button_pressed()
+		if event is InputEventScreenTouch or event is InputEventMouseButton:
+			if event.position.y < 100:
+				$MarginContainer/MainMenu/Music.pressed = !$MarginContainer/MainMenu/Music.pressed
+				_on_Music_toggled($MarginContainer/MainMenu/Music.pressed)
+			else:
+				_on_Button_pressed()
 
 		
 func load_data(file, empty = null, path = "user"):
