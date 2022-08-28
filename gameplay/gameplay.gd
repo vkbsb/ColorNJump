@@ -19,6 +19,7 @@ var ENEMY = preload("res://enemies/Enemy.tscn")
 var LIFT = preload("res://pickup/SlidingBlock.tscn")
 
 var game_score = 0
+var game_floors = 0
 var random = RandomNumberGenerator.new()
 var difficulty_curve = "seeeseememmhmmem"
 var flag_y = 0
@@ -161,6 +162,11 @@ func _physics_process(delta):
 		kill_area.position.y = player.position.y + kill_area_offset
 		
 		var cell_pos = $TileMap.world_to_map(player.position)
+		
+		#store the max floors that the player has covered. 
+		if -cell_pos.y  > game_floors:
+			game_floors = -cell_pos.y
+			
 		if abs(cell_pos.y - top_offset) < threshold_value:
 			var rnd_indx = 0
 			#if the player has crossed our pre-defined difficulty curve. We start throwing m and h at them. 
@@ -189,7 +195,8 @@ func _on_KillArea_body_entered(body):
 		$DeathFX.one_shot = true
 		
 		#save the score details for the main menu to pick. 
-		$Menu.save_score(game_score)
+		print(game_score, game_floors)
+		PlayerData.save_score(game_score)
 		
 		#start a timer for the effect to finish and hide player node.
 		$Timer.start()
@@ -208,7 +215,11 @@ func _on_KillArea_body_entered(body):
 		
 		
 func _on_Timer_timeout():
-	get_tree().reload_current_scene()
+	SceneManager.change_scene("res://tiles/Node2D.tscn")
+#	get_tree().reload_current_scene()
+#	SceneManager._tree = get_tree()
+#	SceneManager._root = SceneManager._tree.get_root()
+#	SceneManager._current_scene = SceneManager._tree.current_scene
 	pass # Replace with function body.
 
 

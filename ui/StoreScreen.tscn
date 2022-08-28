@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/StoreScreen.gd" type="Script" id=1]
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=3]
+[ext_resource path="res://tiles/block.png" type="Texture" id=5]
+[ext_resource path="res://ui/home.png" type="Texture" id=6]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.376471, 0.443137, 0.423529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -145.0
+margin_top = -164.0
+margin_right = 145.0
+margin_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+custom_constants/vseparation = 40
+custom_constants/hseparation = 10
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_right = 160.0
+margin_bottom = 44.0
+text = "Shop"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coins" type="Label" parent="ColorRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -108.226
+margin_top = 2.39729
+margin_right = 53.7743
+margin_bottom = 46.3973
+grow_horizontal = 0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "100"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin_pic" type="Sprite" parent="ColorRect/coins"]
+position = Vector2( 190.094, 23.1752 )
+texture = ExtResource( 5 )
+
+[node name="HomeButton" type="TextureButton" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -25.0
+margin_top = -50.0
+margin_right = 75.7822
+margin_bottom = 48.8735
+rect_min_size = Vector2( 64, 64 )
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 6 )
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnlockAll" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -117.352
+margin_top = 43.7628
+margin_right = 110.648
+margin_bottom = 97.7628
+grow_vertical = 2
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 118.982, 2.37545 )
+text = " Unlock All"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ColorRect/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="ColorRect/UnlockAll" to="." method="_on_UnlockAll_pressed"]

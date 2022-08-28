@@ -208,15 +208,18 @@ color_ramp = SubResource( 8 )
 
 [node name="PlayerLand_0_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+volume_db = -15.0
 
 [node name="PlayerLand_1_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+volume_db = -15.0
 
 [node name="LandMark_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 
 [node name="Dead_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = -15.0
 
 [node name="Pop_0_SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
@@ -229,8 +232,9 @@ stream = ExtResource( 16 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
-pitch_scale = 0.75
+pitch_scale = 0.5
 autoplay = true
+
 [connection signal="area_entered" from="KillArea" to="." method="_on_KillArea_area_entered"]
 [connection signal="body_entered" from="KillArea" to="." method="_on_KillArea_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

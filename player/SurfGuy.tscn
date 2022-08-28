@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://player/surfguy.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://player/surfguy_color_parts.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://player/GameCharacter.gd" type="Script" id=3]
+
+[node name="PlayerCharacter" type="AnimatedSprite"]
+scale = Vector2( 1.5, 1.5 )
+frames = ExtResource( 1 )
+animation = "run"
+script = ExtResource( 3 )
+
+[node name="ColorParts" type="AnimatedSprite" parent="."]
+frames = ExtResource( 2 )
+animation = "run"

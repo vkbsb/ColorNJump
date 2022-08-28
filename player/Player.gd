@@ -11,12 +11,26 @@ var tilemap
 var is_jumping = false
 var pause_physics = false
 var color_index = 0
+
+onready var player_character = $PlayerCharacter
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	img = $tile
 	tilemap = $"../TileMap"
-	pass # Replace with function body.
-
+	
+	var selected_char = PlayerData.inventory.equipped
+	var item_data = StoreData.get_item_data(selected_char)
+	var asset_data = item_data.asset
+	var asset_instance = load(asset_data).instance()
+	
+	velocity.x = item_data.speed
+	
+	add_child(asset_instance)
+	player_character = asset_instance
+	player_character.position = $Position2D.position
+	player_character.play_animation("run")
+	
 func _physics_process(delta):
 	if pause_physics :
 		return
@@ -25,7 +39,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_select"):
 			is_jumping = true
 			$TrailFX.emitting = false
-			
+			player_character.play_animation("jump")
 			velocity.y = -250
 			if velocity.x > 0:
 				$AnimationPlayer.play("spin_right")
@@ -37,7 +51,8 @@ func _physics_process(delta):
 	if is_on_wall():
 		velocity.x *= -1
 		$TrailFX.scale.x *= -1
-		var offset_val = 50 * $Camera2D.position.x/abs($Camera2D.position.x)
+		player_character.scale.x *= -1
+#		var offset_val = 50 * $Camera2D.position.x/abs($Camera2D.position.x)
 #		$Tween.interpolate_property($Camera2D, "position:x", offset_val, -offset_val, 1)
 #		$Tween.start()
 #		if not $"../PlayerLand_0_SFX".is_playing() and not $"../PlayerLand_1_SFX".is_playing():
@@ -59,6 +74,7 @@ func _physics_process(delta):
 	if is_on_floor() or is_on_wall():
 		if is_jumping:
 			is_jumping = false
+			player_character.play_animation("run")
 			$TrailFX.emitting = true
 			if is_on_floor():
 				$"../LandFX".position = position
@@ -66,12 +82,11 @@ func _physics_process(delta):
 				$"../LandFX".emitting = true;
 				$"../LandFX".one_shot = true;
 				if randf() < 0.45:
+					$"../PlayerLand_0_SFX".pitch_scale = rand_range(0.8, 1.2)
 					$"../PlayerLand_0_SFX".play()
 				else:
+					$"../PlayerLand_1_SFX".pitch_scale = rand_range(0.8, 1.2)
 					$"../PlayerLand_1_SFX".play()
-				
-
-			
 	
 	#check for coloring the tiles as the player moves. 
 	color_tiles()
@@ -79,6 +94,9 @@ func _physics_process(delta):
 func set_pick_color(color):
 #	$tile.self_modulate = color
 	$Polygon2D/Polygon2D.self_modulate = color
+	player_character.apply_color(color)
+#	$StandardParts/ColorParts.self_modulate = color
+	
 	var i = 0
 	for c in $"..".color_palette:
 		if c == color:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/Menu.gd" type="Script" id=2]
 [ext_resource path="res://ui/musicOn.png" type="Texture" id=3]
 [ext_resource path="res://ui/musicOff.png" type="Texture" id=4]
+[ext_resource path="res://ui/shoppingCart.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "hide"
@@ -90,13 +91,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="MarginContainer/MainMenu"]
 anchor_left = 0.5
-anchor_top = 0.221
 anchor_right = 0.5
-anchor_bottom = 0.221
 margin_left = -125.0
-margin_top = -19.603
+margin_top = 39.0
 margin_right = 125.0
-margin_bottom = 24.397
+margin_bottom = 83.0
 rect_pivot_offset = Vector2( 125, 20 )
 text = "Color &  Jump"
 align = 1
@@ -107,13 +106,13 @@ __meta__ = {
 [node name="BestScore" type="Label" parent="MarginContainer/MainMenu"]
 self_modulate = Color( 0.952941, 0.443137, 0.129412, 1 )
 anchor_left = 0.5
-anchor_top = 0.334
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.334
-margin_left = -55.401
-margin_top = -19.6632
-margin_right = 46.599
-margin_bottom = 24.3368
+anchor_bottom = 0.5
+margin_left = -53.6908
+margin_top = -142.889
+margin_right = 48.3091
+margin_bottom = -98.8889
 rect_scale = Vector2( 0.7, 0.7 )
 text = "Best: "
 __meta__ = {
@@ -140,10 +139,10 @@ anchor_left = 0.5
 anchor_top = 0.433
 anchor_right = 0.5
 anchor_bottom = 0.433
-margin_left = -60.8
-margin_top = 27.36
-margin_right = 59.2
-margin_bottom = 71.36
+margin_left = -63.4909
+margin_top = -49.893
+margin_right = 56.5091
+margin_bottom = -5.89301
 rect_pivot_offset = Vector2( 60, 0 )
 text = "Score"
 align = 1
@@ -169,16 +168,16 @@ __meta__ = {
 [node name="Music" type="TextureButton" parent="MarginContainer/MainMenu"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -36.4601
-margin_top = 5.2857
-margin_right = 63.5399
-margin_bottom = 105.286
+margin_left = -34.0
+margin_right = 80.0
+margin_bottom = 100.0
 rect_scale = Vector2( 0.3, 0.3 )
 toggle_mode = true
 button_mask = 0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
-stretch_mode = 4
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -189,14 +188,50 @@ anchor_top = 0.833
 anchor_right = 0.5
 anchor_bottom = 0.833
 margin_left = -160.0
-margin_top = 0.159973
+margin_top = 22.16
 margin_right = 160.0
-margin_bottom = 44.16
+margin_bottom = 66.16
 rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 160, 0 )
 custom_colors/font_color = Color( 1, 1, 1, 0.392157 )
 text = "Tap to Jump"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopButton" type="TextureButton" parent="MarginContainer/MainMenu"]
+modulate = Color( 0.952941, 0.443137, 0.129412, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -46.0
+margin_top = 35.0
+margin_right = 46.0
+margin_bottom = 133.0
+focus_mode = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+texture_normal = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/MainMenu/ShopButton"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.0
+margin_top = -21.0
+margin_right = 72.0
+margin_bottom = 23.0
+rect_scale = Vector2( 0.4, 0.4 )
+rect_pivot_offset = Vector2( 50, 44 )
+text = "Shop"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -212,4 +247,8 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide = SubResource( 1 )
 anims/show = SubResource( 2 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="toggled" from="MarginContainer/MainMenu/Music" to="." method="_on_Music_toggled"]
+[connection signal="pressed" from="MarginContainer/MainMenu/ShopButton" to="." method="_on_ShopButton_pressed"]
